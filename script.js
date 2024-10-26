@@ -9,20 +9,71 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
-// Form Validation
-document.querySelector('form').addEventListener('submit', event => {
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
+// Form Validation and Submission
+const form = document.querySelector('form');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const messageInput = document.getElementById('message');
 
-    if (name === "" || email === "" || message === "") {
-        event.preventDefault();
-        alert("Please fill out all fields in the contact form.");
-    } else if (!validateEmail(email)) {
-        event.preventDefault();
-        alert("Please enter a valid email address.");
+function validateForm() {
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const message = messageInput.value.trim();
+    let valid = true;
+
+    if (name === "") {
+        valid = false;
+        showError(nameInput, "Name cannot be empty");
     } else {
-        alert("Thank you for reaching out. We'll get back to you soon!");
+        clearError(nameInput);
+    }
+
+    if (email === "") {
+        valid = false;
+        showError(emailInput, "Email cannot be empty");
+    } else if (!validateEmail(email)) {
+        valid = false;
+        showError(emailInput, "Please enter a valid email address");
+    } else {
+        clearError(emailInput);
+    }
+
+    if (message === "") {
+        valid = false;
+        showError(messageInput, "Message cannot be empty");
+    } else {
+        clearError(messageInput);
+    }
+
+    return valid;
+}
+
+form.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent default form submission
+    if (validateForm()) {
+        const formData = {
+            name: nameInput.value.trim(),
+            email: emailInput.value.trim(),
+            message: messageInput.value.trim(),
+        };
+
+        try {
+            const response = await fetch('http://localhost:3000/submit-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            const data = await response.json();
+            if (data.success) {
+                alert(data.message);
+                form.reset(); // Reset the form
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert("There was an error submitting the form.");
+        }
     }
 });
 
@@ -32,7 +83,7 @@ function validateEmail(email) {
     return emailRegex.test(email);
 }
 
-// Testimonials carousel (if testimonials section exists)
+// Testimonials carousel with animation
 const testimonials = [
     { text: "Edu Consultancy helped me find the perfect university!", author: "Student A" },
     { text: "Thanks to their advice, I got a scholarship!", author: "Student B" },
@@ -42,8 +93,21 @@ let currentTestimonialIndex = 0;
 
 function showTestimonial(index) {
     const testimonial = testimonials[index];
-    document.getElementById("testimonial-text").innerText = `"${testimonial.text}"`;
-    document.getElementById("testimonial-author").innerText = `- ${testimonial.author}`;
+    const testimonialText = document.getElementById("testimonial-text");
+    const testimonialAuthor = document.getElementById("testimonial-author");
+
+    // Fade out animation
+    testimonialText.classList.add('fade-out');
+    testimonialAuthor.classList.add('fade-out');
+
+    setTimeout(() => {
+        testimonialText.innerText = `"${testimonial.text}"`;
+        testimonialAuthor.innerText = `- ${testimonial.author}`;
+        
+        // Fade in animation
+        testimonialText.classList.remove('fade-out');
+        testimonialAuthor.classList.remove('fade-out');
+    }, 300); // Match duration with CSS transition duration
 }
 
 function nextTestimonial() {
@@ -62,17 +126,45 @@ if (document.getElementById("testimonials")) {
     document.getElementById("prev-testimonial").addEventListener("click", prevTestimonial);
 }
 
-// Appointment Booking Simulation (for demo purposes)
+// Appointment Booking Modal
 const appointmentButton = document.createElement('button');
 appointmentButton.innerText = 'Book Appointment';
 appointmentButton.classList.add('appointment-button');
 document.querySelector('#services').appendChild(appointmentButton);
 
 appointmentButton.addEventListener('click', () => {
-    const appointmentDate = prompt("Enter a preferred date for the appointment (DD/MM/YYYY):");
-    if (appointmentDate) {
-        alert(`Appointment booked for ${appointmentDate}. We’ll confirm the timing soon!`);
-    } else {
-        alert("Appointment booking cancelled.");
-    }
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Book an Appointment</h2>
+            <label for="appointment-date">Preferred Date (DD/MM/YYYY):</label>
+            <input type="text" id="appointment-date" placeholder="Enter date">
+            <button id="confirm-appointment">Confirm</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    modal.querySelector('.close').onclick = () => {
+        modal.remove();
+    };
+
+    document.getElementById("confirm-appointment").onclick = async () => {
+        const appointmentDate = document.getElementById('appointment-date').value;
+        if (appointmentDate) {
+            const response = await fetch('http://localhost:3000/book-appointment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ date: appointmentDate }),
+            });
+            const data = await response.json();
+            alert(data.message);
+            modal.remove();
+        } else {
+            alert("Please enter a valid date.");
+        }
+    };
 });
