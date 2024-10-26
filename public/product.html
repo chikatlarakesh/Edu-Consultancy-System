@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - Edu Consultancy System</title>
+    <link rel="stylesheet" href="index.css"> <!-- Link to the main CSS file -->
+    <script src="script.js" defer></script> <!-- Link to the main JS file -->
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Our Courses & Products</h1>
+            <nav>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">🏠 Home</a>
+                    <a href="#courses" class="nav-link">📚 Courses</a>
+                    <a href="#blogs" class="nav-link">📝 Blogs</a>
+                    <a href="#payment" class="nav-link">💳 Payment</a>
+                </div>
+                <a href="login.html" class="login-button">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Courses Section -->
+        <section id="courses">
+            <h2>Available Courses</h2>
+            <p>Explore a variety of courses tailored to help students excel academically and professionally.</p>
+            <ul class="course-list">
+                <li>
+                    <h3>Career Counseling</h3>
+                    <p>Guidance on choosing the right career path based on individual strengths and interests.</p>
+                    <button onclick="subscribe('Career Counseling')">Subscribe</button>
+                </li>
+                <li>
+                    <h3>College Admission Guidance</h3>
+                    <p>Expert advice on the college admission process, application preparation, and more.</p>
+                    <button onclick="subscribe('College Admission Guidance')">Subscribe</button>
+                </li>
+                <li>
+                    <h3>Test Preparation Assistance</h3>
+                    <p>Customized assistance to help students prepare for competitive exams effectively.</p>
+                    <button onclick="subscribe('Test Preparation Assistance')">Subscribe</button>
+                </li>
+                <li>
+                    <h3>Scholarship Information</h3>
+                    <p>Get the latest updates on scholarships and financial aid opportunities.</p>
+                    <button onclick="subscribe('Scholarship Information')">Subscribe</button>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Blogs Section -->
+        <section id="blogs">
+            <h2>Our Blogs</h2>
+            <p>Stay informed with daily blog posts on education trends, study tips, and more.</p>
+            <div class="blog-container">
+                <article class="blog-post">
+                    <h4>Choosing the Right Career</h4>
+                    <p>Find out how to make informed career choices...</p>
+                    <a href="blog1.html">Read More</a>
+                </article>
+                <article class="blog-post">
+                    <h4>Preparing for Exams Effectively</h4>
+                    <p>Tips on managing study time and resources...</p>
+                    <a href="blog2.html">Read More</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Payment Section -->
+        <section id="payment">
+            <h2>Payment Options</h2>
+            <p>Select a course and proceed to payment. We accept multiple payment methods including Card, UPI, and Net Banking.</p>
+            <div class="payment-options">
+                <button onclick="proceedToPayment()">Pay Now</button>
+                <p><strong>Note:</strong> EMI options are also available for selected courses.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Edu Consultancy System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Subscribe button handler
+        function subscribe(courseName) {
+            alert(`You have successfully subscribed to the ${courseName} course. Check your profile for subscription details.`);
+        }
+
+        // Payment button handler
+        function proceedToPayment() {
+            alert("Redirecting to payment gateway...");
+            // Code to handle actual payment processing can be added here
+        }
+    </script>
+</body>
+</html>

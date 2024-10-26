@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Edu Consultancy System</title>
+    <link rel="stylesheet" href="index.css"> <!-- Link to main CSS file -->
+    <script src="script.js" defer></script> <!-- Link to main JS file -->
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>User Dashboard</h1>
+            <nav>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">🏠 Home</a>
+                    <a href="#profile" class="nav-link">👤 Profile</a>
+                    <a href="#subscriptions" class="nav-link">📅 Subscriptions</a>
+                    <a href="#reports" class="nav-link">📊 Reports</a>
+                    <a href="#admin" class="nav-link">🔒 Admin Panel</a>
+                </div>
+                <a href="logout.html" class="login-button">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Profile Section -->
+        <section id="profile">
+            <h2>User Profile</h2>
+            <p>Manage your personal information and profile settings.</p>
+            <form>
+                <label for="profile-pic">Profile Picture:</label>
+                <input type="file" id="profile-pic" name="profile-pic" accept="image/*">
+
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+
+                <button type="submit">Save Changes</button>
+            </form>
+        </section>
+
+        <!-- Subscriptions Section -->
+        <section id="subscriptions">
+            <h2>Subscription Management</h2>
+            <p>View and manage your course subscriptions.</p>
+            <ul class="subscription-list">
+                <li>
+                    <h3>Career Counseling</h3>
+                    <p>Subscribed: <span>Yes</span></p>
+                    <p>Start Date: <span>01/10/2024</span></p>
+                    <p>End Date: <span>01/10/2025</span></p>
+                    <button onclick="renewSubscription('Career Counseling')">Renew Subscription</button>
+                </li>
+                <li>
+                    <h3>Test Preparation Assistance</h3>
+                    <p>Subscribed: <span>No</span></p>
+                    <button onclick="subscribe('Test Preparation Assistance')">Subscribe</button>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports">
+            <h2>Learning & Exam Progress</h2>
+            <p>Track your progress in various courses.</p>
+            <div class="report-chart">
+                <!-- Placeholder for a graphical chart -->
+                <canvas id="progressChart" width="400" height="200"></canvas>
+            </div>
+        </section>
+
+        <!-- Admin Panel (Visible only to Admins) -->
+        <section id="admin">
+            <h2>Admin Panel</h2>
+            <p>Manage users, payments, and subscriptions (Admin access only).</p>
+            <div class="admin-controls">
+                <button onclick="manageUsers()">Manage Users</button>
+                <button onclick="manageSubscriptions()">Manage Subscriptions</button>
+                <button onclick="viewReports()">View Reports</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Edu Consultancy System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Sample data for chart display
+        const chartData = {
+            labels: ['Career Counseling', 'Test Preparation', 'Scholarship Info', 'Admission Guidance'],
+            datasets: [{
+                label: 'Learning Progress (%)',
+                data: [75, 50, 60, 40],
+                backgroundColor: ['#4c8bf5', '#ffeb3b', '#4caf50', '#f44336']
+            }]
+        };
+
+        // Function to render the chart
+        function renderChart() {
+            const ctx = document.getElementById('progressChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderChart);
+
+        // Placeholder functions for admin panel buttons
+        function manageUsers() { alert("Navigating to user management..."); }
+        function manageSubscriptions() { alert("Navigating to subscription management..."); }
+        function viewReports() { alert("Generating reports..."); }
+
+        // Subscription and renewal functions
+        function renewSubscription(courseName) {
+            alert(`Renewing subscription for ${courseName}.`);
+        }
+
+        function subscribe(courseName) {
+            alert(`You have successfully subscribed to the ${courseName} course.`);
+        }
+    </script>
+
+    <!-- Include Chart.js for generating graphical charts in Reports section -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+/* General Styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
+  background: linear-gradient(135deg, #4c8bf5, #1e3a8a);
+  color: #333;
+  display: flex;
+  flex-direction: column; /* Ensure flex column for header and main */
+  align-items: center; /* Center align the header and main content */
+  min-height: 100vh;
+}
+
+/* Header and Navigation Styling */
+header {
+  width: 100%; /* Full width */
+  text-align: center;
+  padding: 1rem 0;
+}
+
+h1 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 1rem; /* Space below the header */
+}
+
+/* Navigation Links Styling */
+nav {
+  display: flex;
+  flex-direction: column; /* Stack the nav links vertically */
+  align-items: center; /* Center align the links */
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center; /* Center the nav links */
+  gap: 1rem;
+  margin-bottom: 1rem; /* Space below the nav links */
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #f5f5f5;
+  color: #333;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+.nav-link:hover {
+  background-color: #ffeb3b;
+  transform: translateY(-5px);
+}
+
+.nav-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.nav-link span {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.login-button {
+  padding: 0.5rem 1rem;
+  background-color: #ffeb3b;
+  color: #333;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.login-button:hover {
+  background-color: #f5c400;
+  transform: translateY(-3px);
+}
+
+/* Main Section Styling */
+main {
+  width: 100%;
+  max-width: 800px; /* Restrict max width for content */
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-top: 2rem; /* Space above the main section */
+}
+
+/* Section Styling */
+section {
+  margin-bottom: 2rem;
+}
+
+section h2 {
+  font-size: 1.75rem;
+  color: #333;
+  border-bottom: 2px solid #4c8bf5;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+section h2:hover {
+  color: #ffeb3b;
+  border-color: #f5c400;
+}
+
+section p, section ul {
+  color: #555;
+  line-height: 1.6;
+}
+
+ul {
+  padding-left: 20px; /* Ensure list items are indented */
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #4c8bf5;
+  font-weight: bold;
+}
+
+/* Contact Form Styling */
+form label {
+  display: block;
+  font-weight: bold;
+  margin-top: 1rem;
+  color: #333;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+form input[type="text"]:hover,
+form input[type="email"]:hover,
+form textarea:hover {
+  border-color: #4c8bf5;
+}
+
+form button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #4c8bf5;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+form button:hover {
+  background-color: #3a6fd5;
+  transform: translateY(-3px);
+}
+
+/* Footer Styling */
+footer {
+  text-align: center;
+  padding: 1rem;
+  color: #fff;
+  font-size: 0.875rem;
+  margin-top: auto; /* Push footer to the bottom */
+}
+
+footer p {
+  transition: color 0.3s;
+}
+
+footer p:hover {
+  color: #ffeb3b;
+}
