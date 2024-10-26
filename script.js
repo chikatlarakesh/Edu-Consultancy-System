@@ -1,5 +1,3 @@
-// script.js
-
 // Smooth scrolling for navigation links
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', event => {
