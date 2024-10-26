@@ -1,4 +1,5 @@
 // script.js
+alert("JavaScript file loaded!");
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('.nav-link').forEach(link => {
