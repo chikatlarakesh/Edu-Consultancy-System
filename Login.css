@@ -25,6 +25,10 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   color: #333;
 }
+.logos{
+  width:130px;
+  height:130px;
+}
 
 .login-container:hover {
   transform: translateY(-5px);
